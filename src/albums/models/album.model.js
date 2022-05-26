@@ -35,6 +35,15 @@ class AlbumModel {
         }
     }
 
+    async getAlbumTrack(id) {
+        try {
+            const result = await this.connection.promise().query('SELECT * FROM album INNER JOIN track ON track.id_album = album.id WHERE album.id = ?', [id])
+            return result[0]
+        }
+        catch (error) {
+            throw error
+        }
+    }
     //******* REQUETE POST SUR LA DB : Création d'un album *********//
 
     async postAlbum(createAlbum) {

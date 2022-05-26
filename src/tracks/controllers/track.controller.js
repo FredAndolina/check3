@@ -12,6 +12,18 @@ class trackController {
         }
     }
 
+    async getTrack(req, res) {
+        try {
+            const resultTrack = await trackModel.getTrack(req.params.id)
+            res.status(200).json(resultTrack) // Indique que la demande a été acceptée.
+        }
+        catch (error) {
+            res.status(500).json({ error: error.message }) // Le serveur a rencontré une condition inattendue qui l'a empêché de répondre à la requête. 
+        }
+    }
+
+
+
     async postTrack(req, res) {
         try {
             const createTrack = await trackModel.postTrack(req.body)

@@ -22,8 +22,27 @@ class trackModel {
             throw error
         }
     }
+    async getTrack(resultTrack) {
+        try {
+            const resultTrackId = await this.connection.promise().query('SELECT * FROM track where id=?', [resultTrack])
+            return resultTrackId[0][0]
+        }
+        catch (error) {
+            throw error
+        }
+    }
 
 
+
+    async getAlbumTrack(id) {
+        try {
+            const result = await this.connection.promise().query('SELECT * FROM album INNER JOIN track ON track.id_album = album.id WHERE album.id = ?', [id])
+            return result[0]
+        }
+        catch (error) {
+            throw error
+        }
+    }
 
     async postTrack(createTrack) {
         try {
