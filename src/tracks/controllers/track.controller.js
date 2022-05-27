@@ -38,7 +38,7 @@ class trackController {
         try {
             const body = req.body
             const updateTrack = await trackModel.updateTrack(body, req.params.id)
-            res.status(201).json(updateTrack) // 201 Indique que la demande a réussi et qu'une nouvelle ressource a été créée en conséquence.
+            res.status(204).json(updateTrack) // 204 Indique que la demande a réussi et qu'une nouvelle ressource a été créée en conséquence.
         }
         catch (error) {
             res.status(500).json({ error: error.message })
